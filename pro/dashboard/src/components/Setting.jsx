@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Header from './Header';
 import './settings.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,7 +12,7 @@ function Setting() {
     const navigate = useNavigate()
     const handleSubmit = () => {
         const { username, email,oldpassword, newpassword } = adminInfo;
-        if (!username && !email && !oldpasswordpassword && !newpassword) {
+        if (!username && !email && !oldpassword && !newpassword) {
             alert("fill the form completely")
         } else {
             alert('updated successfully');
