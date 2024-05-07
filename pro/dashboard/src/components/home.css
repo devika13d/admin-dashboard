@@ -1,0 +1,45 @@
+.card {
+    width: 80%;
+    height: auto;
+    margin-left: 0;
+}
+
+.card-title {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #9277ab49;
+}
+
+.card-title i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calender {
+    margin-top: 10px;
+    color: #ba95bf;
+}
+
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 10px;
+    background-color: #a582b9f3;
+    color: #fff;
+    font-size: 14px;
+    margin-left:85px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .card {
+        width: auto;
+        height: auto;
+        margin-left: 0;
+    }
+}

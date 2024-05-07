@@ -1,0 +1,46 @@
+header {
+  padding: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.head {
+  margin-left: 117px;
+}
+
+.head h4 {
+  font-size: medium;
+}
+
+.search {
+  margin-left: auto;
+}
+.head h4:hover{
+ text-decoration: underline;
+ justify-content: space-between;
+}
+
+
+@media screen and (max-width: 768px) {
+  header {
+    padding: 20px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .head {
+    margin: 10px 0;
+    margin-left: 0;
+  }
+  
+  .search {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+}
+
+/* .head h4:hover{
+  text-decoration: underline;
+  justify-content: space-between;
+ } i want a transition when hover and also the space between the word and underline */
