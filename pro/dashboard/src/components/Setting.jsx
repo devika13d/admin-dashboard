@@ -12,8 +12,8 @@ function Setting() {
     });
     const navigate = useNavigate()
     const handleSubmit = () => {
-        const { username, email, password } = adminInfo;
-        if (!username && !email && !password) {
+        const { username, email,oldpassword, newpassword } = adminInfo;
+        if (!username && !email && !oldpasswordpassword && !newpassword) {
             alert("fill the form completely")
         } else {
             alert('updated successfully');
