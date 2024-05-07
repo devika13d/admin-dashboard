@@ -15,16 +15,15 @@ import './profile.css';
 function Profile() {
     const allUsers = useSelector((state) => state.dashSlice.users);
     const dispatch = useDispatch();
-    
+    console.log(allUsers);
     useEffect(() => {
         dispatch(fetchUsers());
     }, []);
 
-    const rows = allUsers.map((user, index) => ({
+    const rows = allUsers.map((user) => ({
         email: user.email,
         password: user.website,
         phone: user.phone,
-        gender: user.gender,
         location: user.address
     }));
 
@@ -35,19 +34,19 @@ function Profile() {
                 <div className='col-md-1'></div>
                 <div className='col-md-10'>
                     <div className='row'>
-                        <div className='col-md-6'>
+                        <div className='col-md-6 w-95'>
                             <div className="profile-picture d-flex align-items-center">
                                 <img src="https://th.bing.com/th/id/R.9f909e47ddfdd7ab255971b2575dcfb8?rik=8JdK90F8aI9J7Q&riu=http%3a%2f%2fwritestylesonline.com%2fwp-content%2fuploads%2f2016%2f08%2fFollow-These-Steps-for-a-Flawless-Professional-Profile-Picture-1024x1024.jpg&ehk=at%2bW8ahmVDAWSjLun4vkjMUmmlvUD7psBtJ5Bf9jSfA%3d&risl=&pid=ImgRaw&r=0" alt="Profile" />
                                 <div className="profile-content">
-                                    <h1 style={{ marginLeft: "95px" }}>Martha</h1>
-                                    <h1 style={{ marginLeft: "95px" }}>Administrator</h1>
+                                    <h4 style={{ marginLeft: "95px" }}>Martha</h4>
+                                    <h1 style={{ marginLeft: "95px",opacity: 0.4 }}>Administrator</h1>
                                 </div>
                             </div>
                             <div className='card-body mt-3'>
                                 <div className='card-title text-center'>
                                     <h4 className='text-center'>Analytics</h4>
                                 </div>
-                            </div>
+                            </div> 
                             <div className='mt-4'>
                                 <TableContainer component={Paper} className='w-100'>
                                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -56,7 +55,6 @@ function Profile() {
                                                 <TableCell>Email</TableCell>
                                                 <TableCell align="right">Password</TableCell>
                                                 <TableCell align="right">Phone</TableCell>
-                                                <TableCell align="right">Gender</TableCell>
                                                 <TableCell align="right">Location</TableCell>
                                             </TableRow>
                                         </TableHead>
@@ -66,7 +64,6 @@ function Profile() {
                                                     <TableCell component="th" scope="row">{row.email}</TableCell>
                                                     <TableCell align="right">{row.password}</TableCell>
                                                     <TableCell align="right">{row.phone}</TableCell>
-                                                    <TableCell align="right">{row.gender}</TableCell>
                                                     <TableCell align="right">{`${row.location.city}`}</TableCell>
                                                 </TableRow>
                                             ))}
@@ -79,7 +76,7 @@ function Profile() {
                             <h2>User Statistics</h2>
                             <p>Total Users: 100</p>
                             <p>Active Users: 80</p>
-                            <p>Inactive Users: 20</p>
+                            <p>Inactive Users:20</p>
                             <div className='text-center align-items-center  text-light w-100 '>
                                 <LineChart
                                     xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}

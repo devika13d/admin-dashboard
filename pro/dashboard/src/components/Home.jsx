@@ -11,8 +11,8 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers, fetchWeather } from '../Redux/dashSlice';
-import './home.css';
 import Header from './Header';
+import './home.css';
 
 function Home() {
   const dispatch = useDispatch()
@@ -25,19 +25,23 @@ function Home() {
     dispatch(fetchWeather())
     dispatch(fetchUsers())
   }, []);
-
+  const data = [
+    { id: 0, value: 10, label: 'series A' },
+    { id: 1, value: 15, label: 'series B' },
+    { id: 2, value: 20, label: 'series C' },
+  ];
   const allWeather = useSelector((state) => state.dashSlice.weather.main)
   console.log(allWeather);
   const allUsers = useSelector((state) => state.dashSlice.users)
   console.log(allUsers);
   return (
     <div className='container-fluid'>
-      <Header/>
+      <Header />
       <div className='row'>
         <div className='col-md-3'>
           <Sidebar />
         </div>
-        <div className='col-md-9'>
+        <div className='col-md-7'>
           <div className='row'>
             <div className='col-md-6'>
               <div className='card'>
@@ -99,10 +103,10 @@ function Home() {
                     <BarChartIcon />
                   </div>
                   <div className='align-items-center d-flex justify-content-center calender'>
-                    {allUsers ? (
+                    {allWeather ? (
                       <BarChart
-                        xAxis={[{ scaleType: 'band', data: allUsers.map(user => `${user.id} - ${user.name}`) }]}
-                        series={allUsers.map(user => ({ data: [1, 4, 7], label: `${user.id} - ${user.name}` }))}
+                        xAxis={[{ scaleType: 'band', data: Object.entries(allWeather).map(([key, value]) => `${key}: ${value}`) }]}
+                        series={[{ data: Object.values(allWeather), label: 'Weather Data' }]}
                         width={500}
                         height={300}
                       />
@@ -110,38 +114,30 @@ function Home() {
                       <p>Loading...</p>
                     )}
 
-
                   </div>
                 </div>
               </div>
             </div>
-
-
-
             <div className='col-md-6 mt-3'>
               <div className='card'>
                 <div className='card-body'>
                   <div className='card-title'>
                     <DonutLargeIcon />
                   </div>
-                  {
-                    allWeather ?
-                      <PieChart
-                        series={[
-                          {
-                            data: [
-                              { id: 0, value: allWeather.pressure, label: 'Pressure' },
-                              { id: 1, value: allWeather.temp_min, label: 'Min temp' },
-                              { id: 2, value: allWeather.temp_max, label: 'Max temp' },
-                            ],
-                          },
-                        ]}
-                        width={300}
-                        height={200}
-                      />
-                      :
-                      <p>Loading...</p>
-                  }
+                  {allWeather ? (
+                    <PieChart
+                      series={[
+                        {
+                          data,
+                          highlightScope: { faded: 'global', highlighted: 'item' },
+                          faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
+                        },
+                      ]}
+                      height={200}
+                    />
+                  ) : (
+                    <p>Loading...</p>
+                  )}
 
                 </div>
               </div>
